@@ -26,13 +26,13 @@ Function Install-Software {
     Begin {
         Try {
             #Default CentraStage and Avigilon Control Center Server installers 
-            $DefaultCentraStageInstaller = "\\drobo\Software\CentraStage Clients\AgentSetup_TEMP.exe"
-            $DefaultACCSInstaller = Get-ChildItem "\\drobo\Software\Avigilon Software\~All Avigilon Software Versions\" | Sort-Object -Descending | Select-Object -First 1 | Get-ChildItem | Where-Object { $_.Name -like "*Server*" }
-            $DefaultACCCInstaller = Get-ChildItem "\\drobo\Software\Avigilon Software\~All Avigilon Software Versions\" | Sort-Object -Descending | Select-Object -First 1 | Get-ChildItem | Where-Object { $_.Name -like "*Client*" }
+            $DefaultCentraStageInstaller = "\\path\to\CentraStage\agent.exe"
+            $DefaultACCSInstaller = Get-ChildItem "\\path\to\Avigilon\software\" | Sort-Object -Descending | Select-Object -First 1 | Get-ChildItem | Where-Object { $_.Name -like "*Server*" }
+            $DefaultACCCInstaller = Get-ChildItem "\\path\to\Avigilon\software\" | Sort-Object -Descending | Select-Object -First 1 | Get-ChildItem | Where-Object { $_.Name -like "*Client*" }
 
             #Path to CentraStage clients and Avigilon software
-            $CentraStagePath = "\\drobo\Software\CentraStage Clients\"
-            $ACCSPath = "\\drobo\Software\Avigilon Software\"
+            $CentraStagePath = "\\path\to\CentraStage\"
+            $ACCSPath = "\\path\to\Avigilon software\"
         }
         Catch {
             Write-Error -Message "Error in accessing software.`n$_.Exception.Message"
@@ -247,7 +247,7 @@ Function Create-GUI {
 
         #Generate list of school districts based on folders for Avigilon Software
         #Not the most elegant solution but it works
-        $DistrictList = Get-ChildItem "\\drobo\Software\Avigilon Software" -Exclude "*~*" | ForEach-Object { $_.Name.Substring(11) }
+        $DistrictList = Get-ChildItem "\\path\to\Avigilon software" -Exclude "*~*" | ForEach-Object { $_.Name.Substring(11) }
 
         #Create variables for the items on form
         $xaml.SelectNodes("//*[@Name]") | ForEach-Object { Set-Variable -Name "WPF$($_.Name)" -Value $Form.FindName($_.Name) }
