@@ -8,8 +8,7 @@
 
 .NOTES
     Version:        3.0
-    Author:         Eddie Miller
-    Organization:   Central Technologies
+    Author:         Edward C Miller III
     Creation Date:  1/13/2016
     Purpose/Change: 3/7/2016 - Full GUI tool
     TODO:           Better error handling
